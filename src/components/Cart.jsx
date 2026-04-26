@@ -3,7 +3,7 @@ import './Cart.css'
 
 export default function Cart({ items, onRemove, onUpdateQuantity, onBack }) {
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
-  const tax = total * 0.1
+  const tax = total * 0.12
   const grandTotal = total + tax
 
   return (
@@ -30,7 +30,7 @@ export default function Cart({ items, onRemove, onUpdateQuantity, onBack }) {
                 <img src={item.image} alt={item.name} />
                 <div className="item-details">
                   <h4>{item.name}</h4>
-                  <p className="item-price">${item.price.toFixed(2)}</p>
+                  <p className="item-price">{item.price.toFixed(2)} TJS</p>
                 </div>
                 <div className="item-quantity">
                   <button onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}>
@@ -42,7 +42,7 @@ export default function Cart({ items, onRemove, onUpdateQuantity, onBack }) {
                   </button>
                 </div>
                 <div className="item-total">
-                  ${(item.price * item.quantity).toFixed(2)}
+                  {(item.price * item.quantity).toFixed(2)} TJS
                 </div>
                 <button
                   className="remove-btn"
@@ -57,15 +57,15 @@ export default function Cart({ items, onRemove, onUpdateQuantity, onBack }) {
           <div className="cart-summary">
             <div className="summary-row">
               <span>Subtotal:</span>
-              <span>${total.toFixed(2)}</span>
+              <span>{total.toFixed(2)} TJS</span>
             </div>
             <div className="summary-row">
-              <span>Tax (10%):</span>
-              <span>${tax.toFixed(2)}</span>
+              <span>Tax (12%):</span>
+              <span>{tax.toFixed(2)} TJS</span>
             </div>
             <div className="summary-row total">
               <span>Total:</span>
-              <span>${grandTotal.toFixed(2)}</span>
+              <span>{grandTotal.toFixed(2)} TJS</span>
             </div>
             <button className="checkout-btn">Proceed to Checkout</button>
             <button className="continue-btn" onClick={onBack}>
